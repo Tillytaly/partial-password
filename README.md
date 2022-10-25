@@ -18,7 +18,7 @@ git clone https://github.com/Tillytaly/PartialPassword.git
 Navigate to the project directory:
 
 ```bash
-cd .\PartialPassword\password-input\
+cd .\partial-password
 ```
 
 Run  `npm install` to install all necessary dependencies
