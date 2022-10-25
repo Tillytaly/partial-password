@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/partial-password/static/css/main.e747f8ce.css",
+    "main.js": "/partial-password/static/js/main.03f3583f.js",
+    "static/js/787.b2aa8385.chunk.js": "/partial-password/static/js/787.b2aa8385.chunk.js",
+    "index.html": "/partial-password/index.html",
+    "main.e747f8ce.css.map": "/partial-password/static/css/main.e747f8ce.css.map",
+    "main.03f3583f.js.map": "/partial-password/static/js/main.03f3583f.js.map",
+    "787.b2aa8385.chunk.js.map": "/partial-password/static/js/787.b2aa8385.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.e747f8ce.css",
+    "static/js/main.03f3583f.js"
+  ]
+}
