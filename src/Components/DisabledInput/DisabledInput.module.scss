@@ -1,0 +1,19 @@
+@use "../../Sass/Variables" as *;
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  &Input {
+    width: 1.5rem;
+    height: 3rem;
+    background-color: $lighterGrey;
+  }
+
+  &InputLabel {
+    margin-top: 0.5rem;
+    color: $darkGrey;
+    font-size: 1.5rem;
+  }
+}

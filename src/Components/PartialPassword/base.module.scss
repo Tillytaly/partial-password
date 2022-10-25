@@ -1,0 +1,60 @@
+@use "../../Sass/Variables" as *;
+
+.formContainer {
+  animation: open 1s linear;
+  padding: 1rem;
+  min-width: 350px;
+}
+
+.form {
+  animation: open 1s linear;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+
+  &Content {
+    display: grid;
+    grid-template-rows: max-content max-content;
+    gap: 4rem;
+  }
+
+  &Inputs {
+    display: flex;
+    gap: 15px;
+    flex-wrap: wrap;
+  }
+}
+
+.submitBtn {
+  display: flex;
+  justify-content: center;
+}
+
+.iconBtnContainer {
+  display: flex;
+  justify-content: center;
+}
+
+.submitBtn button {
+  font-size: 1.5rem;
+  padding: 0.2rem 2rem;
+  border-radius: 0.3rem;
+  width: 90%;
+  background-color: $lightBlue;
+  color: white;
+  border-color: $darkBlue;
+
+  &:disabled {
+    background-color: $lighterGrey;
+  }
+
+  &:disabled:hover {
+    color: white;
+  }
+
+  &:hover,
+  &:focus {
+    color: $darkBlue;
+    transition: 0.3s;
+  }
+}

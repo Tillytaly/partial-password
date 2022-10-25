@@ -1,0 +1,81 @@
+@use "../../Sass/Variables" as *;
+@use "sass:map";
+@use "./base.module.scss";
+
+@media screen and (min-width: map.get($breakpoints, "small")) {
+  .formContainer {
+    min-width: 350px;
+    width: 420px;
+  }
+
+  .form {
+    gap: 2rem;
+
+    &Content {
+      display: grid;
+      grid-template-rows: max-content max-content;
+      gap: 4rem;
+    }
+  }
+
+  .iconBtnContainer {
+    display: flex;
+    justify-content: center;
+  }
+
+  .submitBtn button {
+    width: 90%;
+  }
+}
+
+@media screen and (min-width: map.get($breakpoints, "medium")) {
+  .formContainer {
+    width: 55rem;
+  }
+
+  .form {
+    &Inputs {
+      justify-content: center;
+    }
+
+    &Content {
+      gap: 7rem;
+    }
+  }
+
+  .iconBtn,
+  .submitBtn button {
+    width: 50%;
+  }
+}
+
+@media screen and (min-width: map.get($breakpoints, "large")) {
+  .formContainer {
+    width: 120rem;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .form {
+    display: flex;
+    flex-direction: column;
+    gap: 6rem;
+
+    &Inputs {
+      flex-wrap: nowrap;
+    }
+
+    &Content {
+      display: flex;
+      gap: 2rem;
+      justify-content: center;
+      width: 100%;
+      align-items: center;
+    }
+  }
+
+  .submitBtn button {
+    width: 13rem;
+    height: 2.5rem;
+  }
+}

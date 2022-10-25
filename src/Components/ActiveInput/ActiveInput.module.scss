@@ -1,0 +1,36 @@
+@use "../../Sass/Variables" as *;
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  &Input {
+    width: 2.5rem;
+    height: 4rem;
+    font-size: 2.5rem;
+    text-align: center;
+    border: 2px solid $lighterGrey;
+    color: $darkGrey;
+    &textarea {
+      width: 50%;
+    }
+
+    &:hover,
+    &:focus,
+    &:active {
+      outline: $lightBlue auto 1px;
+    }
+
+    &:focus {
+      &::selection {
+        background-color: $lightBlue;
+      }
+    }
+  }
+
+  &InputLabel {
+    font-size: 2rem;
+    color: $darkGrey;
+  }
+}
