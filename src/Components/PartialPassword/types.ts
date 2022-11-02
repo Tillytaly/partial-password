@@ -6,9 +6,6 @@ export interface ActiveInputs {
 
 export interface PartialPasswordState {
   activeInputIndexes: number[];
-  isVisible: boolean;
-  hasError: boolean;
-  message: string;
   areAllInputsProvided: boolean;
 }
 
@@ -30,6 +27,9 @@ export interface PartialPasswordProps {
 }
 
 export interface UsePartialPassword extends PartialPasswordState {
+  hasError: boolean;
+  errorMessage: string;
+  isPasswordVisible: boolean;
   inputActions: InputActions;
   addInputToRef: (element: HTMLInputElement) => void;
   togglePasswordVisibility: () => void;

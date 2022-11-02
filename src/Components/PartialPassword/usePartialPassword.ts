@@ -20,10 +20,12 @@ import {
 
 const initialPasswordState = {
   activeInputIndexes: [],
-  isVisible: false,
-  hasError: false,
-  message: "",
   areAllInputsProvided: false,
+};
+
+const initialErrorState = {
+  hasError: false,
+  errorMessage: "",
 };
 
 function usePartialPassword(
@@ -33,8 +35,11 @@ function usePartialPassword(
 ): UsePartialPassword {
   const { partialPassword, setPartialPassword } = usePartialPasswordContext();
   const inputRefs = useRef<HTMLInputElement[]>([]);
+  const [isPasswordVisible, setIsPasswordVisible] = useState(false);
+  const [{ hasError, errorMessage }, setErrorState] =
+    useState<typeof initialErrorState>(initialErrorState);
   const [
-    { activeInputIndexes, isVisible, hasError, message, areAllInputsProvided },
+    { activeInputIndexes, areAllInputsProvided },
     setPartialPasswordState,
   ] = useState<PartialPasswordState>(initialPasswordState);
 
@@ -133,10 +138,10 @@ function usePartialPassword(
       });
 
       if (hasError) {
-        setPartialPasswordState((prevState) => ({
+        setErrorState((prevState) => ({
           ...prevState,
           hasError: true,
-          message: "Invalid password.",
+          errorMessage: "Invalid password.",
         }));
 
         setPartialPassword({});
@@ -150,16 +155,8 @@ function usePartialPassword(
   );
 
   const togglePasswordVisibility = useCallback(() => {
-    if (isVisible) {
-      setPartialPasswordState((prevState) => {
-        return { ...prevState, isVisible: false };
-      });
-    }
-
-    setPartialPasswordState((prevState) => {
-      return { ...prevState, isVisible: true };
-    });
-  }, [isVisible]);
+    setIsPasswordVisible(!isPasswordVisible);
+  }, [isPasswordVisible]);
 
   const addInputToRef = useCallback((element: HTMLInputElement) => {
     const isElementAlreadyInInputsArray = inputRefs.current.includes(element);
@@ -176,9 +173,9 @@ function usePartialPassword(
     if (!hasError) return;
 
     const timeout = setTimeout(() => {
-      setPartialPasswordState((prevState) => ({
+      setErrorState((prevState) => ({
         ...prevState,
-        message: "",
+        errorMessage: "",
         hasError: false,
       }));
     }, 5000);
@@ -201,9 +198,9 @@ function usePartialPassword(
     onSubmit,
     addInputToRef,
     activeInputIndexes,
-    isVisible,
+    isPasswordVisible,
     hasError,
-    message,
+    errorMessage,
     areAllInputsProvided,
     inputActions: { onKeyDown, onChange, onKeyUp },
   };
