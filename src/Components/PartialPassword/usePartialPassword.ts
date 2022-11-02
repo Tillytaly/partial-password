@@ -20,7 +20,6 @@ import {
 
 const initialPasswordState = {
   activeInputIndexes: [],
-  isVisible: false,
   hasError: false,
   message: "",
   areAllInputsProvided: false,
@@ -33,8 +32,9 @@ function usePartialPassword(
 ): UsePartialPassword {
   const { partialPassword, setPartialPassword } = usePartialPasswordContext();
   const inputRefs = useRef<HTMLInputElement[]>([]);
+  const [isPasswordVisible, setIsPasswordVisible] = useState(false)
   const [
-    { activeInputIndexes, isVisible, hasError, message, areAllInputsProvided },
+    { activeInputIndexes, hasError, message, areAllInputsProvided },
     setPartialPasswordState,
   ] = useState<PartialPasswordState>(initialPasswordState);
 
@@ -150,16 +150,8 @@ function usePartialPassword(
   );
 
   const togglePasswordVisibility = useCallback(() => {
-    if (isVisible) {
-      setPartialPasswordState((prevState) => {
-        return { ...prevState, isVisible: false };
-      });
-    }
-
-    setPartialPasswordState((prevState) => {
-      return { ...prevState, isVisible: true };
-    });
-  }, [isVisible]);
+    setIsPasswordVisible(!isPasswordVisible)
+  }, [isPasswordVisible]);
 
   const addInputToRef = useCallback((element: HTMLInputElement) => {
     const isElementAlreadyInInputsArray = inputRefs.current.includes(element);
@@ -201,7 +193,7 @@ function usePartialPassword(
     onSubmit,
     addInputToRef,
     activeInputIndexes,
-    isVisible,
+    isPasswordVisible,
     hasError,
     message,
     areAllInputsProvided,

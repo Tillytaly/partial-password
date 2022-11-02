@@ -25,9 +25,9 @@ const PartialPassword = ({
 }: PartialPasswordProps) => {
   const {
     activeInputIndexes,
-    isVisible,
     hasError,
     message,
+    isPasswordVisible,
     inputActions,
     areAllInputsProvided,
     onSubmit,
@@ -35,7 +35,7 @@ const PartialPassword = ({
     addInputToRef,
   } = usePartialPassword(password, passwordSettings, onSuccess);
 
-  const inputType = isVisible ? "text" : "password";
+  const inputType = isPasswordVisible ? "text" : "password";
 
   return (
     <div className={formContainer}>
@@ -72,7 +72,7 @@ const PartialPassword = ({
           <div className={iconBtnContainer}>
             <PasswordVisibilityBtn
               onClick={togglePasswordVisibility}
-              isVisible={isVisible}
+              isVisible={isPasswordVisible}
             />
           </div>
         </div>
