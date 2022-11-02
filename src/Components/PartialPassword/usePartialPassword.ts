@@ -20,9 +20,12 @@ import {
 
 const initialPasswordState = {
   activeInputIndexes: [],
-  hasError: false,
-  message: "",
   areAllInputsProvided: false,
+};
+
+const initialErrorState = {
+  hasError: false,
+  errorMessage: "",
 };
 
 function usePartialPassword(
@@ -32,9 +35,11 @@ function usePartialPassword(
 ): UsePartialPassword {
   const { partialPassword, setPartialPassword } = usePartialPasswordContext();
   const inputRefs = useRef<HTMLInputElement[]>([]);
-  const [isPasswordVisible, setIsPasswordVisible] = useState(false)
+  const [isPasswordVisible, setIsPasswordVisible] = useState(false);
+  const [{ hasError, errorMessage }, setErrorState] =
+    useState<typeof initialErrorState>(initialErrorState);
   const [
-    { activeInputIndexes, hasError, message, areAllInputsProvided },
+    { activeInputIndexes, areAllInputsProvided },
     setPartialPasswordState,
   ] = useState<PartialPasswordState>(initialPasswordState);
 
@@ -133,10 +138,10 @@ function usePartialPassword(
       });
 
       if (hasError) {
-        setPartialPasswordState((prevState) => ({
+        setErrorState((prevState) => ({
           ...prevState,
           hasError: true,
-          message: "Invalid password.",
+          errorMessage: "Invalid password.",
         }));
 
         setPartialPassword({});
@@ -150,7 +155,7 @@ function usePartialPassword(
   );
 
   const togglePasswordVisibility = useCallback(() => {
-    setIsPasswordVisible(!isPasswordVisible)
+    setIsPasswordVisible(!isPasswordVisible);
   }, [isPasswordVisible]);
 
   const addInputToRef = useCallback((element: HTMLInputElement) => {
@@ -168,9 +173,9 @@ function usePartialPassword(
     if (!hasError) return;
 
     const timeout = setTimeout(() => {
-      setPartialPasswordState((prevState) => ({
+      setErrorState((prevState) => ({
         ...prevState,
-        message: "",
+        errorMessage: "",
         hasError: false,
       }));
     }, 5000);
@@ -195,7 +200,7 @@ function usePartialPassword(
     activeInputIndexes,
     isPasswordVisible,
     hasError,
-    message,
+    errorMessage,
     areAllInputsProvided,
     inputActions: { onKeyDown, onChange, onKeyUp },
   };

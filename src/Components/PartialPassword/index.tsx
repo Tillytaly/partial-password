@@ -26,7 +26,7 @@ const PartialPassword = ({
   const {
     activeInputIndexes,
     hasError,
-    message,
+    errorMessage,
     isPasswordVisible,
     inputActions,
     areAllInputsProvided,
@@ -67,7 +67,7 @@ const PartialPassword = ({
                 );
               })}
             </div>
-            {hasError && <ErrorMessage message={message} />}
+            {hasError && <ErrorMessage message={errorMessage} />}
           </div>
           <div className={iconBtnContainer}>
             <PasswordVisibilityBtn
